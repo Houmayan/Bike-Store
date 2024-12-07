@@ -44,7 +44,7 @@ const updateProduct = async (req: Request, res: Response) => {
     const result = await bikeService.getUpdateProduct(userId, data);
     res.send({
       status: true,
-      message: "Product found successfully",
+      message: "Product updated successfully",
       result,
     });
   } catch (error) {
