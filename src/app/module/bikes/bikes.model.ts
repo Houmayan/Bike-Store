@@ -34,6 +34,30 @@ const productSchema = new Schema<TProduct>({
     type: Boolean,
     required: true,
   },
+  createdAt: {
+    type: Date,
+    // required: true,
+  },
+  updatedAt: {
+    type: Date,
+  },
+});
+productSchema.pre("save", function (this, next) {
+  const now = new Date();
+  const localTime = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+  if (!this.createdAt) {
+    this.createdAt = localTime;
+  }
+  this.updatedAt = localTime;
+  next();
+});
+
+productSchema.pre("findOneAndUpdate", function (this, next) {
+  const now = new Date();
+  const localTime = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+
+  this.set({ updatedAt: localTime });
+  next();
 });
 
 const Product = model("Product", productSchema);
