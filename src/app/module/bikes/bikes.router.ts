@@ -8,4 +8,4 @@ router.get("/get-products/:userId", bikesController.getSingleProduct);
 router.put("/update-products/:userId", bikesController.updateProduct);
 router.delete("/delete-products/:userId", bikesController.deleteProduct);
 
-export const studentRoutes = router;
+export const bikeRoutes = router;
